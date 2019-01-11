@@ -23,20 +23,20 @@ public class Zadanie32 {
 	public static void zliczSlowaWTekscie(File plik) {
 		TreeMap<String, Integer > mapa = new TreeMap<String, Integer>();
 		Scanner sc = null;
+		
 		try {
 			sc = new Scanner(plik);
 		} catch (FileNotFoundException e) {
 
 			System.out.println("Nie znaleziono wymaganego pliku "+ plik.getName());
 		}
+		
 		sc.useDelimiter("[^\\p{L}]+");
 		
 		while(sc.hasNext()) {
 			String slowo = sc.next();
-//			if(mapa.containsKey(slowo)) {
-//				//mapa.replace(slowo, value)
-//				merge
-//			}
+
+			// Dodanie wpisu(slowo,ilosc+1) do mapa jezeli wpis istnial lub utworzenie wpisu z wartoscia początkową 1
 			mapa.merge(slowo, 1, Math::addExact);
 			
 			//Sortowanie po wartościach rosnąco 
@@ -49,6 +49,7 @@ public class Zadanie32 {
 		sc.close();
 
 		//Drukwoanie mapy bez sortowania po wartości
+		
 //		for (Map.Entry<String, Integer> mapa_element : mapa.entrySet()) {
 //			System.out.println(mapa_element.getKey() + " -> " + mapa_element.getValue());
 //		}
@@ -59,8 +60,6 @@ public class Zadanie32 {
 			.sorted(Map.Entry.comparingByValue())
 				.forEach(System.out::println);
 		
-		
-		//System.out.println(mapa);
 	}
 
 }
